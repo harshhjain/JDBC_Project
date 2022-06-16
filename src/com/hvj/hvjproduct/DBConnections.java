@@ -60,7 +60,7 @@ public class DBConnections {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             Connection con = DriverManager.getConnection(AppSettings.ConnectionString);
             PreparedStatement stmt = con.prepareStatement("SELECT * from PRODUCT_LIST where PRODUCT_STOCK > 0;");
-            //stmt.setInt(1, productID);
+
             ResultSet rs = stmt.executeQuery();
 
             List<ProductDetails> ls = new ArrayList<ProductDetails>();
@@ -76,6 +76,7 @@ public class DBConnections {
             productDetails.IsSuccess = false;
             productDetails.Exception = e;
             List<ProductDetails> ls = new ArrayList<ProductDetails>();
+            ls.add(productDetails);
             return ls;
         }
     }
@@ -109,6 +110,7 @@ public class DBConnections {
             productDetails.IsSuccess = false;
             productDetails.Exception = e;
             List<ProductDetails> lap = new ArrayList<ProductDetails>();
+            lap.add(productDetails);
             return lap;
         }
     }
